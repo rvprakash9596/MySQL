@@ -320,15 +320,20 @@ id int primary key,
 name varchar(50)
 );
 
+insert into dept values(101,"English"),(102,"Hindi");
+select * from dept;
+
 create table teacher (
 id int primary key,
 name varchar(50),
 dept_id int,
 foreign key (dept_id) references dept(id)
+on delete cascade
+on update cascade
 );
 
 
-insert into dept values(101,"English"),(102,"Hindi");
+
 
 select * from dept;
 
