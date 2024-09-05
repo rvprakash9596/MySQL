@@ -334,10 +334,19 @@ select * from dept;
 
 update dept set id=111 where id=103;
 
--- Cascading for Foreign Keys 
+-- Cascading for Foreign Keys
 -- On delete cascade
 -- On update cascade
--- Cascading means , agar ek jagah change hua to dusri jagah bhi change hona chahiye
+-- Cascading means, agar ek table me change hua to dusri table me bhi change ho jana chahiye
+
+
+create table student (
+id int primary key,
+courseID int,
+foreign key(courseID) references course(id)
+on delete cascade
+on update cascade
+);
 
 
 drop table teacher;
