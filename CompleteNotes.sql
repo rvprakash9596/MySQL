@@ -272,9 +272,19 @@ ORDER BY city desc;
 -- Table related queries
 -- Update (to update existing rows)
 
+update student set grade="E" where grade="O";
+update student set grade="O" where grade="A";
+
+-- This query solves the problem of wrong marks updated by teacher.
+update student set marks=marks+1;
+
+select * from student;
+
 UPDATE student
 SET grade="O"
 WHERE grade="A";
+
+
 
 SET SQL_SAFE_UPDATES=0;
 
