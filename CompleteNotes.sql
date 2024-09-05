@@ -248,7 +248,10 @@ select city, count(name) from student group by city having max(marks)>90;
 select distinct city from student;
 -- general order
 select city,count(rollno) from student group by city having max(marks)>70;
-select city from student where grade="A" group by city having max(marks)>=63 order by city desc;
+select city FROM student group by City;
+select city FROM student where grade="A" group by city having max(marks)>=63 order by city desc;
+
+
 -- Table related queries
 -- Update operation
 
