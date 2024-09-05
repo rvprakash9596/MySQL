@@ -321,8 +321,6 @@ DELETE FROM student WHERE marks < 50;
 -- Cascading means, agar ek table me change hua to dusri table me bhi change ho jana chahiye
 
 
-
-
 create table dept (
 id int primary key,
 name varchar(50)
@@ -343,7 +341,8 @@ on update cascade
 insert into teacher values(101,"Ravi Prakash",101),(102,"Shivam",102);
 select * from teacher;
 
-update dept set id=111 where id=103;
+update dept set id=111 where id=102;
+select * from dept;
 
 
 SET SQL_SAFE_UPDATES=0;
