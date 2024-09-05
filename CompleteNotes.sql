@@ -315,6 +315,14 @@ DELETE FROM student WHERE marks < 50;
 -- =======================================================================================
 -- Revisiting Foregin Key 	01:58:10 
 
+-- Cascading for Foreign Keys
+-- On delete cascade
+-- On update cascade
+-- Cascading means, agar ek table me change hua to dusri table me bhi change ho jana chahiye
+
+
+
+
 create table dept (
 id int primary key,
 name varchar(50)
@@ -332,32 +340,11 @@ on delete cascade
 on update cascade
 );
 
-
-
-
-select * from dept;
+insert into teacher values(101,"Ravi Prakash",101),(102,"Shivam",102);
+select * from teacher;
 
 update dept set id=111 where id=103;
 
--- Cascading for Foreign Keys
--- On delete cascade
--- On update cascade
--- Cascading means, agar ek table me change hua to dusri table me bhi change ho jana chahiye
-
-
-create table student (
-id int primary key,
-courseID int,
-foreign key(courseID) references course(id)
-on delete cascade
-on update cascade
-);
-
-
-drop table teacher;
-
-insert into teacher values(101,"Ravi Prakash",101),(102,"Shivam",102);
-select * from teacher;
 
 SET SQL_SAFE_UPDATES=0;
 
