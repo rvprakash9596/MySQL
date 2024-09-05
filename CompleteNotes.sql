@@ -337,7 +337,7 @@ update dept set id=111 where id=103;
 -- Cascading for Foreign Keys 
 -- On delete cascade
 -- On update cascade
-
+-- Cascading means , agar ek jagah change hua to dusri jagah bhi change hona chahiye
 
 
 drop table teacher;
