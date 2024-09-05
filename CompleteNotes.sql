@@ -2,41 +2,58 @@ create database college;
 show databases;
 use college;
 
--- create table student (
--- Roll_No int primary key,
--- Name varchar(20) );
+create table student (
+Roll_No int primary key,
+Name varchar(20) ,
+Age int not null
+);
 
--- show tables;
--- desc student;
+show tables;
+desc student;
 
--- select * from student;
+select * from student;
 
--- insert into student values(101,"Ramu"),(102,"Chacha");
--- insert into student (Roll_no , name ) values (103,"Shyam");
+insert into student values(101,"Ramu",21),(102,"Chacha",25);
+insert into student (Roll_no , name,age ) values (103,"Shyam",32);
+select * from student;
 
--- create database xyz;
--- use xyz;
--- create table employee (id int primary key, 
--- 	name varchar(20) , 
---  salary float);
+-- Practice 1 ============================================================================
 
--- insert into employee values(1,"Ravi ",35000),(2,"Sonu ",45000),(3,"Mote ",65000);
--- select * from employee;
---  select * from employee;
+create database xyz_company;
+use xyz_company;
+create table employee (id int primary key, 
+name varchar(20) , 
+salary float);
 
--- create table temp1( id int unique);
--- insert into temp1 values(101);
--- insert into temp1 values(101);
+insert into employee values(1,"Ravi ",35000),(2,"Sonu ",45000),(3,"Mote ",65000);
+select * from employee;
+
+-- =======================================================================================
+
+create table temp1( id int unique);
+insert into temp1 values(101);
+insert into temp1 values(101);
 
 
--- create table temp2( id int , salary int default 25000);
--- insert into temp2 (id)  values (101); 
--- select * from temp2;
+create table temp2( id int , salary int default 25000);
+insert into temp2 (id)  values (101); 
+select * from temp2;
 drop database xyz;
+
+-- =======================================================================================
+create database t1;
+create database if not exists t1; -- It is a good practice while we are creating a Database
+
+drop database t1;
+drop database if exists t1; -- This is a good practice.
+show databases;
+
+drop database college;
+
 
 create database college;
 use college;
-
+show tables;
 
 create table student (
 rollno int primary key,
@@ -54,10 +71,47 @@ insert into student (rollno,name,marks,grade,city) values
 (105,"Shonu",11,"F","noida"),
 (106,"Daaku",75,"B","Mumbai");
 
+select * from student;
+
 insert into student (rollno,name,marks,grade,city) values
 (107,"Karan",48,"C","KLO"),
 (108,"Shyam",38,"D","gkp"),
 (109,"Raj",75,"B","lko");
+
+
+
+-- Concept of Keys
+-- primary key
+-- foreign key
+
+create table emp(
+id int ,
+salary int default 25000
+);
+
+
+insert into emp (id) values(101);
+select * from emp;
+
+create table city (
+id int primary key,
+city varchar(20),
+age int,
+constraint age_check check (age>=18 AND city="delhi")
+);
+
+select * from city;
+select distinct city from student;
+
+
+create table newTable(
+age int check(age>=18)
+);
+
+select * from newTable;
+
+
+-- delete query
 
 delete from student where rollno=108;
 
@@ -71,24 +125,40 @@ select name , marks from student;
 select city from student;
 select distinct city from student;
 
+-- =======================================================================================
+
+-- Where Clause
+
+
 select name from student where marks>80;
 select * from student where marks>80;
 select * from student where city = "mumbai";
 select * from student where city = "KLD";
 select * from student where marks>=97;
 select * from student where marks>=80 and city="KLD";
+
+-- Where Clause using Operators
+
 select * from student where marks+10>90;
 select * from student where marks=97;
 
 select * from student where marks=97 or city="noida";
+
 truncate table student;
 select * from student;
 
+
+-- BETWEEN operator
 select * from student where marks between 80 and 90;
 
+-- IN operator
 select * from student where city in ("gkp","kld");
+
+-- NOT operator
 select * from student where city not in ("gkp","kld");
-select * from student where marks>75 limit 3;
+
+-- LIMIT Clause
+select * from student where marks>75 limit 5;
 
 #order by clause in ascending order or descending order
 
@@ -96,38 +166,51 @@ select * from student order by city asc;
 select * from student order by marks asc;
 select * from student order by marks desc;
 
+select * from student order by marks desc;
 select * from student order by marks desc limit 3;
 
+-- =======================================================================================
 
 -- aggreegate functions: aggreegate functions perform a calculation on a set of values , and return a single values.
-/* Ex: COUNT()
+/* Ex:  COUNT()
 		MAX()
         MIN()
         SUM()
-        AVG()*/
+        AVG()
+*/
         select marks from student;
 		select max(marks) from student;
         select min(marks) from student;
         select avg(marks) from student;
         select sum(marks) from student;
         select count(name) from student;
+        select max(city) from student;
+        select min(city) from student;
         
 -- Group by clause : Groups rows that have the same values into summary rows.
 -- It collects data from multiple records and groups the result by one or more column.
--- generally we use group by with some aggregate function.
+-- generally we use group by Clause with some aggregate function.
 
 select city from student group by city;
+
+
 select city , count(name) from student group by city;
-select city , name ,count(rollno) from student group by name,city;
-select city , avg(marks) from student group by city;
+
+select city , name ,min(marks) from student group by name,city;
+
+select city , avg(marks) from student group by city order by city;
+
 select city , avg(marks) from student group by city order by avg(marks) desc;
+
 select city from student group by city order by avg(marks);
 
 create table customer (customer_id int not null primary key,
 						customer varchar(15),mode varchar(20),city varchar(20));
+
 show tables;
 desc customer;
-insert into customer values(101,"Ram","Netbanking","KLD"),
+
+insert into customer values (101,"Ram","Netbanking","KLD"),
 							(102,"Shyam","Credit Card","LKO"),
                             (103,"Mohan","Credit Card","BNZ"),
                             (104,"Aman","Netbanking","Noida"),
@@ -137,7 +220,9 @@ insert into customer values(101,"Ram","Netbanking","KLD"),
                             (108,"Abhi","Netbanking","Kusinagar"),
                             (109,"Harsh","Netbanking","Lucknow"),
                             (110,"Tushar","Credit Card","Mahmoodabad");
+                            
 select * from customer;
+
 select mode from customer group by mode;
 select mode,count(customer) from customer group by mode;
 alter table customer rename payment;
@@ -479,12 +564,12 @@ drop view view1;
 
 /*SQL INDEX : The CREATE INDEX statement is used to create indexes in tables.Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.*/ 
 
---Syntax : CREATE INDEX index_name ON table_name (column1, column2, ...);
---Create UNIQUE INDEX Syntax:CREATE UNIQUE INDEX index_name ON table_name (column1, column2);
+-- Syntax : CREATE INDEX index_name ON table_name (column1, column2, ...);
+-- Create UNIQUE INDEX Syntax:CREATE UNIQUE INDEX index_name ON table_name (column1, column2);
 
 CREATE INDEX idx_lastname ON Persons (LastName);
 CREATE INDEX idx_pname ON Persons (LastName, FirstName);
 
 CREATE UNIQUE INDEX idx_pname ON Persons (LastName, FirstName);
---DROP INDEX Statement
+-- DROP INDEX Statement
 ALTER TABLE student DROP INDEX idx_rollno;
