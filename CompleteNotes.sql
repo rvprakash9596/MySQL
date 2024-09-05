@@ -270,7 +270,7 @@ ORDER BY city desc;
 
 
 -- Table related queries
--- Update operation
+-- Update (to update existing rows)
 
 UPDATE student
 SET grade="O"
