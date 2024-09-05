@@ -313,14 +313,22 @@ select * from student;
 DELETE FROM student WHERE marks < 50;
 
 -- =======================================================================================
--- Revisiting Foregin Key
+-- Revisiting Foregin Key 	01:58:10 
 
 create table dept (
 id int primary key,
 name varchar(50)
 );
 
+create table teacher (
+id int primary key,
+name varchar(50),
+dept_id int,
+foreign key (dept_id) references dept(id)
+);
+
 insert into dept values(101,"English"),(102,"Hindi");
+
 select * from dept;
 
 update dept set id=111 where id=103;
@@ -329,14 +337,7 @@ update dept set id=111 where id=103;
 -- On delete cascade
 -- On update cascade
 
-create table teacher (
-id int primary key,
-name varchar(50),
-dept_id int,
-foreign key (dept_id) references dept(id)
-on delete cascade
-on update cascade
-);
+
 
 drop table teacher;
 
