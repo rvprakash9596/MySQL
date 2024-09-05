@@ -303,10 +303,16 @@ show databases;
 show tables;
 use college;
 
+-- ==========================================================================================
 
 -- Delete related queries
+update student set marks=92 where rollno=101;
+
+select * from student;
+
 DELETE FROM student WHERE marks < 50;
 
+-- =======================================================================================
 -- Revisiting Foregin Key
 
 create table dept (
