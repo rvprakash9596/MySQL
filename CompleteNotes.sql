@@ -251,6 +251,15 @@ select city,count(rollno) from student group by city having max(marks)>70;
 select city FROM student group by City;
 select city FROM student WHERE grade="A" GROUP BY city HAVING max(marks)>=63 ORDER BY city desc;
 
+#General Order
+/*
+SELECT column(s)
+FROM table_name
+WHERE condition
+GROUP BY column(s)
+HAVING condition
+ORDER BY column(s) ASC/DESC;
+*/
 
 -- Table related queries
 -- Update operation
