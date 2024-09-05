@@ -327,6 +327,7 @@ dept_id int,
 foreign key (dept_id) references dept(id)
 );
 
+
 insert into dept values(101,"English"),(102,"Hindi");
 
 select * from dept;
